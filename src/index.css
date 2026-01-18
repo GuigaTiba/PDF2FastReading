@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0A0A0A;
+  --color-guideline: #333333;
+  --color-progressBg: #1A1A1A;
+  --color-secondary: #666666;
+  --color-control: #AAAAAA;
+  --color-orp: #FF0000;
+  --color-surface: #111111;
+
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-family-mono);
+  background-color: var(--color-background);
+  color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-guideline);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
+
+/* Focus styles */
+button:focus-visible {
+  outline: 2px solid var(--color-orp);
+  outline-offset: 2px;
+}
+
+/* Word fade animation for smooth transitions */
+@keyframes word-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.word-animate {
+  animation: word-fade-in 80ms ease-out;
+}
+
+/* Pulse animation for ORP letter */
+@keyframes orp-pulse {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+  }
+}
+
+.orp-glow {
+  animation: orp-pulse 2s ease-in-out infinite;
+}
+
+/* Control panel fade */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.controls-visible {
+  animation: fade-in 200ms ease-out forwards;
+}
+
+.controls-hidden {
+  animation: fade-out 200ms ease-out forwards;
+  pointer-events: none;
+}
+
+/* Gradient masks for guide lines */
+.guide-line-gradient {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--color-guideline) 20%,
+    var(--color-guideline) 80%,
+    transparent 100%
+  );
+}
+
+/* Upload zone hover effect */
+@keyframes upload-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+  50% {
+    box-shadow: 0 0 40px 10px rgba(255, 0, 0, 0.1);
+  }
+}
+
+.upload-hover:hover {
+  animation: upload-pulse 2s ease-in-out infinite;
+}
+
+/* Button press effect */
+.btn-press:active {
+  transform: scale(0.95);
+}
+
+/* Smooth transitions for all interactive elements */
+.interactive {
+  transition: all 150ms ease-out;
+}
+
+/* Progress bar glow effect */
+.progress-glow {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+/* Text selection */
+::selection {
+  background: rgba(255, 0, 0, 0.3);
+  color: white;
+}
+
+/* WPM indicator style */
+.wpm-indicator {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+/* Subtle text shadow for readability */
+.text-shadow {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Loading spinner custom style */
+@keyframes spin-smooth {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin-smooth 1s linear infinite;
+}
+
+/* Keyboard shortcut badge */
+.kbd-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-guideline);
+  border-radius: 4px;
+  color: var(--color-control);
+}
