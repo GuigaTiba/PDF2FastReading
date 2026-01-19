@@ -8,6 +8,6 @@ export default defineConfig({
     include: ['pdfjs-dist'],
   },
   server: {
-    allowedHosts: 'all',
+    allowedHosts: true,
   },
 });
